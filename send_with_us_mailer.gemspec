@@ -12,7 +12,8 @@ Gem::Specification.new do |gem|
     service with a Ruby on Rails app. SendWilthUsMailer implements a
     mailer API similar to the ActionMailer railtie.}
   gem.summary       = %q{An ActionMailer look alike for Send With Us.}
-  gem.homepage      = ""
+  gem.homepage      = 'http://github.com/dlokhorst/SendWithUs-Mailer'
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
