@@ -32,23 +32,23 @@ describe SendWithUsMailer::MailParams do
   end
 
   describe "#email_id" do
-    it "is accessible" do
+    it "is readable" do
       subject.respond_to?(:email_id).must_equal true
-      subject.respond_to?(:email_id=).must_equal true
+      subject.respond_to?(:email_id=).must_equal false
     end
   end
 
   describe "#to" do
-    it "is accessible" do
+    it "is readable" do
       subject.respond_to?(:to).must_equal true
-      subject.respond_to?(:to=).must_equal true
+      subject.respond_to?(:to=).must_equal false
     end
   end
 
   describe "#from" do
-    it "is accessible" do
+    it "is readable" do
       subject.respond_to?(:from).must_equal true
-      subject.respond_to?(:from=).must_equal true
+      subject.respond_to?(:from=).must_equal false
     end
   end
 
