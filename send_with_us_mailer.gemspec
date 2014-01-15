@@ -4,15 +4,15 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'send_with_us_mailer/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "send_with_us_mailer"
+  gem.name          = "sendwithus_mailer"
   gem.version       = SendWithUsMailer::VERSION
-  gem.authors       = ["David Lokhorst"]
-  gem.email         = ["david.lokhorst@gmail.com"]
+  gem.authors       = ["David Lokhorst", "Nicholas Rempel"]
+  gem.email         = ["nick@sendwithus.com"]
   gem.description   = %q{A convenient way to use the Send With Us email
     service with a Ruby on Rails app. SendWilthUsMailer implements a
     mailer API similar to the ActionMailer railtie.}
   gem.summary       = %q{An ActionMailer look alike for Send With Us.}
-  gem.homepage      = 'http://github.com/dlokhorst/SendWithUs-Mailer'
+  gem.homepage      = 'http://github.com/nrempel/SendWithUs-Mailer'
   gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
