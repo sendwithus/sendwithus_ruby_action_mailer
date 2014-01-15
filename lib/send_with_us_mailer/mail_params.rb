@@ -19,9 +19,13 @@ module SendWithUsMailer
         case key
         when :email_id
           @email_id = value
-        when :to
+        when :recipient_name
+          @to.merge!(name: value)
+        when :recipient_address
           @to.merge!(address: value)
-        when :from
+        when :from_name
+          @from.merge!(name: value)
+        when :from_address
           @from.merge!(address: value)
         when :reply_to
           @from.merge!(reply_to: value)
