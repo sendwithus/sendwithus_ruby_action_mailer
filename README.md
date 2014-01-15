@@ -1,8 +1,8 @@
-# SendWithUsMailer
+# sendwithus Ruby Action Mailer
 
-[Send With Us](http://sendwithus.com) is a service that provides a convenient way for non-developers to create and edit
-the email content from your app.  Send With Us created a gem, `send_with_us`, that communicates to
-their service using their low-level RESTful API.
+[sendwithus](http://sendwithus.com) is a service that provides a convenient way for non-developers
+to create and edit the email content from your app. sendwithus has created a gem, `send_with_us`,
+that communicates with our REST API for sending templated emails.
 
 Ruby on Rails developers are familiar with the ActionMailer interface for sending email.  This
 gem implements a small layer over the `send_with_us` gem that provides and ActionMailer-like API.
@@ -55,7 +55,7 @@ Once a mailer action is defined, you can deliver your message or create it and s
 for delivery later:
 
 `````Ruby
-Notifier.welcome(david).deliver # sends the email
+Notifier.welcome(nick).deliver # sends the email
 
 mail = Notifier.welcome(david)  # => a SendWithUsMailer::MailParams object
 mail.deliver                    # sends the email
