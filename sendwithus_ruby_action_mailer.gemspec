@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'send_with_us_mailer/version'
+require 'sendwithus_ruby_action_mailer/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "sendwithus_ruby_action_mailer"
@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
     service with a Ruby on Rails app. SendWilthUsMailer implements a
     mailer API similar to the ActionMailer railtie.}
   gem.summary       = %q{An ActionMailer look alike for Send With Us.}
-  gem.homepage      = 'http://github.com/nrempel/SendWithUs-Mailer'
+  gem.homepage      = 'http://github.com/sendwithus/sendwithus_ruby_action_mailer'
   gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)

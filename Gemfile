@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in send_with_us_mailer.gemspec
+# Specify your gem's dependencies in sendwithus_ruby_action_mailer.gemspec
 gemspec

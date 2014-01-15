@@ -11,7 +11,7 @@ gem implements a small layer over the `send_with_us` gem that provides and Actio
 
 Add this line to your application's Gemfile:
 
-    gem 'send_with_us_mailer'
+    gem 'sendwithus_ruby_action_mailer'
 
 And then execute:
 
@@ -19,7 +19,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install send_with_us_mailer
+    $ gem install sendwithus_ruby_action_mailer
 
 ## Setup
 
