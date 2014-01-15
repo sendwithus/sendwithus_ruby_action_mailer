@@ -37,7 +37,7 @@ class Notifier < SendWithUsMailer::Base
 
     def welcome(recipient)
         assign(:account, recipient)
-        mail(email_id: 'ID-CODE-FROM-SEND-WITH-US', to: recipient.email)
+        mail(email_id: 'ID-CODE-FROM-SEND-WITH-US', recipient_address: recipient.email)
     end
 end
 `````
