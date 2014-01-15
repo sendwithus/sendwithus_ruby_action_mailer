@@ -4,7 +4,7 @@ describe SendWithUsMailer do
   describe "minimum requirements" do
     class ExampleMailer < SendWithUsMailer::Base
       def send_an_email
-        mail email_id: '4bBEddKbhKBu5xsU2p58KX', to: 'dave@example.com'
+        mail email_id: '4bBEddKbhKBu5xsU2p58KX', recipient_address: 'dave@example.com', recipient_name: 'dave'
       end
     end
 
@@ -16,6 +16,7 @@ describe SendWithUsMailer do
     it "sets the recipient" do
       mail = ExampleMailer.send_an_email
       mail.to[:address].must_equal 'dave@example.com'
+      mail.to[:name].must_equal 'dave'
     end
   end
 
@@ -24,7 +25,8 @@ describe SendWithUsMailer do
       def example_email
         mail email_id: 'a4bBEddKbhKBu5xsU2p58KX',
              to: 'adave@example.com',
-             from: 'asender@company.com',
+             from_address: 'asender@company.com',
+             from_name: 'asender',
              reply_to: 'ano-reply@company.com'
       end
     end
@@ -32,6 +34,7 @@ describe SendWithUsMailer do
     it "sets the sender" do
       mail = MoreOptionsMailer.example_email
       mail.from[:address].must_equal 'asender@company.com'
+      mail.from[:name].must_equal 'asender'
     end
 
     it "sets the reply-to address" do
@@ -45,7 +48,7 @@ describe SendWithUsMailer do
       default email_id: 'def-4bBEddKbhKBu5xsU2p58KX'
 
       def send_an_email
-        mail to: 'def-dave@example.com'
+        mail recipient_address: 'def-dave@example.com'
       end
     end
 
@@ -63,7 +66,8 @@ describe SendWithUsMailer do
   describe "all parameters can be set by default" do
     class AllDefaultMailer < SendWithUsMailer::Base
       default email_id: 'all4bBEddKbhKBu5xsU2p58KX',
-           to: 'alldave@example.com',
+           recipient_address: 'alldave@example.com',
+           recipient_name: 'alldave',
            from: 'allsender@company.com',
            reply_to: 'allno-reply@company.com'
 
@@ -80,6 +84,7 @@ describe SendWithUsMailer do
     it "sets the recipient" do
       mail = AllDefaultMailer.send_default_email
       mail.to[:address].must_equal 'alldave@example.com'
+      mail.to[:name].must_equal 'alldave'
     end
   end
 
@@ -92,7 +97,7 @@ describe SendWithUsMailer do
       def team_notification(user)
         assign :team, "The Winners"
         assign :user, {first_name: user.first_name, last_name: user.last_name}
-        mail to: user.email
+        mail recipient_address: user.email
       end
     end
 
