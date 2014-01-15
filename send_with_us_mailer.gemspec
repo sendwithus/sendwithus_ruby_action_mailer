@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'send_with_us_mailer/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "sendwithus_mailer"
+  gem.name          = "sendwithus_ruby_action_mailer"
   gem.version       = SendWithUsMailer::VERSION
   gem.authors       = ["David Lokhorst", "Nicholas Rempel"]
   gem.email         = ["nick@sendwithus.com"]
