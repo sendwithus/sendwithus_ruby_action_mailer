@@ -94,8 +94,10 @@ module SendWithUsMailer
     # in an email message, these are:
     #
     # * <tt>:email_id</tt> - The unique code associated with the SendWithUs specific email.
-    # * <tt>:to</tt> - Who the message is destined for. Must be a valid email address.
-    # * <tt>:from</tt> - Who the message is from. Must be a valid email address.
+    # * <tt>:recipient_address</tt> - Who the message is destined for. Must be a valid email address.
+    # * <tt>:recipient_name</tt> - Recipient's name
+    # * <tt>:from_address</tt> - Who the message is from. Must be a valid email address.
+    # * <tt>:from_name</tt> - Who the email is from
     # * <tt>:reply_to</tt> - Who to set the Reply-To header of the email to.
     #
     # You can set default values for any of the above headers by using the <tt>::default</tt>
