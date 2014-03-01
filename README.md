@@ -36,7 +36,13 @@ class Notifier < SendWithUsMailer::Base
     default from: 'no-reply@example.com'
 
     def welcome(recipient)
-        assign(:account, recipient)
+        assign(:account, recipient) 
+
+        assign(:captain_name, recipient.name) 
+        #=> in sendwithus email template {{ captain_name }}
+        assign :team, {team_name: recipient.team_name, captain: recipient.name} 
+        #=> in sendwithus email template {{ team.team_name }} and {{ team.captain }} 
+        
         mail(email_id: 'ID-CODE-FROM-SEND-WITH-US', recipient_address: recipient.email)
     end
 end
