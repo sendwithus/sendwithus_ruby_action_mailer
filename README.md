@@ -43,7 +43,10 @@ class Notifier < SendWithUsMailer::Base
         assign :team, {team_name: recipient.team_name, captain: recipient.name} 
         #=> in sendwithus email template {{ team.team_name }} and {{ team.captain }} 
         
-        mail(email_id: 'ID-CODE-FROM-SEND-WITH-US', recipient_address: recipient.email)
+        mail(
+            email_id: 'ID-CODE-FROM-SEND-WITH-US', 
+            recipient_address: recipient.email,
+            bcc: [{:address => "name@example.com"},{:address => "name2@example.com"}])
     end
 end
 `````
