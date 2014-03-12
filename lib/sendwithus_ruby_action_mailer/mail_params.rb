@@ -8,6 +8,8 @@ module SendWithUsMailer
       @email_data = {}
       @to = {}
       @from = {}
+      @cc = []
+      @bcc = []
     end
 
     def assign(key, value) #:nodoc:
@@ -29,6 +31,10 @@ module SendWithUsMailer
           @from.merge!(address: value)
         when :reply_to
           @from.merge!(reply_to: value)
+        when :cc
+          @cc.concat(value)
+        when :bcc
+          @bcc.concat(value)
         end
       end
     end
@@ -40,7 +46,7 @@ module SendWithUsMailer
     # In particular, the +api_key+ must be set (following the guidelines in the
     # +send_with_us+ documentation).
     def deliver
-      SendWithUs::Api.new.send_with(@email_id, @to, @email_data, @from)
+      SendWithUs::Api.new.send_with(@email_id, @to, @email_data, @from, @cc, @bcc)
     end
   end
 end
