@@ -23,7 +23,17 @@ Or install it yourself as:
 
 ## Setup
 
-(TODO)
+### Rails
+
+For a Rails app, create `send_with_us.rb` in `/config/initializers/`
+with the following:
+
+```ruby
+SendWithUs::Api.configure do |config|
+    config.api_key = 'YOUR API KEY'
+    config.debug = true
+end
+```
 
 ## Usage
 
