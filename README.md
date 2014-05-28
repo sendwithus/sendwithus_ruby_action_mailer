@@ -56,7 +56,8 @@ class Notifier < SendWithUsMailer::Base
         mail(
             email_id: 'ID-CODE-FROM-SEND-WITH-US', 
             recipient_address: recipient.email,
-            bcc: [{:address => "name@example.com"},{:address => "name2@example.com"}])
+            bcc: [{:address => "name@example.com"},{:address => "name2@example.com"}]),
+            files: ["/path/to/file"]
     end
 end
 `````
