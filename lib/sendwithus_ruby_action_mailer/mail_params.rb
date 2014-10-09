@@ -25,6 +25,8 @@ module SendWithUsMailer
           @to.merge!(name: value)
         when :recipient_address
           @to.merge!(address: value)
+        when :version_name
+          @to.merge!(version_name: value)
         when :from_name
           @from.merge!(name: value)
         when :from_address
