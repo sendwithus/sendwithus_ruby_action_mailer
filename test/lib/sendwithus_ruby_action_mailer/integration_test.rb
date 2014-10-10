@@ -23,11 +23,12 @@ describe SendWithUsMailer do
   describe "more mail options" do
     class MoreOptionsMailer < SendWithUsMailer::Base
       def example_email
-        mail email_id: 'a4bBEddKbhKBu5xsU2p58KX',
+        mail email_id: 'tem_9YvYsaLW2Mw4tmPiLcVvpC',
              to: 'adave@example.com',
              from_address: 'asender@company.com',
              from_name: 'asender',
-             reply_to: 'ano-reply@company.com'
+             reply_to: 'ano-reply@company.com',
+             version: 'v2'
       end
     end
 
