@@ -10,6 +10,7 @@ module SendWithUsMailer
       @from = {}
       @cc = []
       @bcc = []
+      @version_name = ""
     end
 
     def assign(key, value) #:nodoc:
@@ -35,6 +36,8 @@ module SendWithUsMailer
           @cc.concat(value)
         when :bcc
           @bcc.concat(value)
+        when :version_name
+          @version_name = value
         end
       end
     end
@@ -46,7 +49,7 @@ module SendWithUsMailer
     # In particular, the +api_key+ must be set (following the guidelines in the
     # +send_with_us+ documentation).
     def deliver
-      SendWithUs::Api.new.send_with(@email_id, @to, @email_data, @from, @cc, @bcc)
+      SendWithUs::Api.new.send_with(@email_id, @to, @email_data, @from, @cc, @bcc, [], "", @version_name)
     end
   end
 end
