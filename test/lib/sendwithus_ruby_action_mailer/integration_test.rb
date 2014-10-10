@@ -28,7 +28,7 @@ describe SendWithUsMailer do
              from_address: 'asender@company.com',
              from_name: 'asender',
              reply_to: 'ano-reply@company.com',
-             version: 'v2'
+             version_name: 'v2'
       end
     end
 
