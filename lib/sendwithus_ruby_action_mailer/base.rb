@@ -77,6 +77,11 @@ module SendWithUsMailer
           super
         end
       end
+
+      # Add our mailer_methods to the set of methods the mailer responds to.
+      def respond_to?(method_name, include_all = false)
+        mailer_methods.include?(method_name.to_sym) || super
+      end
     end
 
     #----------------------- Instance methods ----------------------------
