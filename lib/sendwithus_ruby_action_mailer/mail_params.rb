@@ -11,6 +11,7 @@ module SendWithUsMailer
       @cc = []
       @bcc = []
       @version_name = ""
+      @locale = {}
     end
 
     def assign(key, value) #:nodoc:
@@ -38,9 +39,8 @@ module SendWithUsMailer
           @bcc.concat(value)
         when :version_name
           @version_name = value
-        end
         when :locale
-          @locale = value
+          @locale.merge!(locale: value)
         end
       end
     end
