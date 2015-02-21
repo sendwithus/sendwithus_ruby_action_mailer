@@ -58,7 +58,7 @@ describe SendWithUsMailer::MailParams do
     end
 
     it "calls the send_with_us gem" do
-      SendWithUs::Api.any_instance.expects(:send_with)
+      SendWithUs::Api.any_instance.expects(:send_email)
       subject.deliver
     end
   end
