@@ -11,6 +11,8 @@ module SendWithUsMailer
       @cc = []
       @bcc = []
       @version_name = ""
+      @locale = ""
+      @files = []
     end
 
     def assign(key, value) #:nodoc:
@@ -38,6 +40,10 @@ module SendWithUsMailer
           @bcc.concat(value)
         when :version_name
           @version_name = value
+        when :locale
+          @locale = value
+        when :files
+          @files.concat(value)
         end
       end
     end
@@ -58,7 +64,9 @@ module SendWithUsMailer
         bcc: @bcc,
         files: [],
         esp_account: "",
-        version_name: @version_name
+        version_name: @version_name,
+        locale: @locale,
+        files: @files
       )
     end
   end
