@@ -59,8 +59,11 @@ class Notifier < SendWithUsMailer::Base
             from_name: 'Billing',
             from_address: 'billing@example.com',
             reply_to: 'support@example.com',
-            bcc: [{:address => "name@example.com"},{:address => "name2@example.com"}],
-            version_name: 'en-US')
+            bcc: [{:address => "name@example.com"}, {:address => "name2@example.com"}],
+            version_name: 'version-A',
+            locale: 'en-US',
+            files: ["/path/to/file"]
+        )
     end
 end
 `````
