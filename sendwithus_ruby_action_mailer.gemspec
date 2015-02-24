@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_runtime_dependency 'send_with_us'
+  gem.add_runtime_dependency 'send_with_us', '>= 1.9.0'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'minitest-colorize'
   gem.add_development_dependency 'mocha'
