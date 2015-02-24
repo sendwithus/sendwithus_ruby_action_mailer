@@ -65,8 +65,8 @@ module SendWithUsMailer
         files: [],
         esp_account: "",
         version_name: @version_name,
-        files: @files,
-        locale: @locale
+        locale: @locale,
+        files: @files
       )
     end
   end
