@@ -103,7 +103,7 @@ end
 
 ## Using Sidekiq
 
-Because SendWithUsMailer is not a subclass of ActionMailer (`SendWithUsMailer.is_a? ActionMailer` returns `false`), [Sidekiq's delayed ActionMailer extension](https://github.com/mperham/sidekiq/wiki/Delayed-extensions) will not automatically be included in the SendWithUsMailer, meaning that `YourMailer.delay.your_email` will not work without additional configuration. You can include Sidekiq's delayed ActionMailer in the SendWithUsMailer by putting the following line in config/initializers/send_with_us.rb along with your API config:
+Because SendWithUsMailer is not a subclass of ActionMailer (`SendWithUsMailer.is_a? ActionMailer` returns `false`), [Sidekiq's delayed ActionMailer extension](https://github.com/mperham/sidekiq/wiki/Delayed-extensions) will not automatically be included in the SendWithUsMailer, meaning that `YourMailer.delay.your_email` will not work without additional configuration. You can include Sidekiq's delayed ActionMailer in the SendWithUsMailer by putting the following line in `config/initializers/send_with_us.rb` along with your API config:
 
 `````Ruby
 ::SendWithUsMailer::Base.extend(Sidekiq::Extensions::ActionMailer)
