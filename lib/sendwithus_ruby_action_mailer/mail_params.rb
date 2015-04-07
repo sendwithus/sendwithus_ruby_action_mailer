@@ -62,7 +62,6 @@ module SendWithUsMailer
         from: @from,
         cc: @cc,
         bcc: @bcc,
-        files: [],
         esp_account: "",
         version_name: @version_name,
         locale: @locale,
