@@ -13,6 +13,7 @@ module SendWithUsMailer
       @version_name = ""
       @locale = ""
       @files = []
+      @headers = {}
     end
 
     def assign(key, value) #:nodoc:
@@ -44,6 +45,8 @@ module SendWithUsMailer
           @locale = value
         when :files
           @files.concat(value)
+        when :headers
+          @headers.merge!(value)
         end
       end
     end
@@ -65,7 +68,8 @@ module SendWithUsMailer
         esp_account: "",
         version_name: @version_name,
         locale: @locale,
-        files: @files
+        files: @files,
+        headers: @headers
       )
     end
   end
