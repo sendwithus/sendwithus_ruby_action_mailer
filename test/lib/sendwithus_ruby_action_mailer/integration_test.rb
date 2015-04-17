@@ -47,11 +47,20 @@ describe SendWithUsMailer do
 
   describe "using default to set a parameter" do
     class MailerWithDefault < SendWithUsMailer::Base
-      default email_id: 'def-4bBEddKbhKBu5xsU2p58KX'
+      default email_id: 'def-4bBEddKbhKBu5xsU2p58KX',
+              from_address: 'from@mailer_with_default.com',
+              reply_to: 'reply_to@mailer_with_default.com'
 
       def send_an_email
         mail recipient_address: 'def-dave@example.com'
       end
+    end
+
+    class InheritDefaultsMailer < MailerWithDefault
+    end
+
+    class ReplacedDefaultsMailer < MailerWithDefault
+      default from_address: 'from@replaced_defaults_mailer.com'
     end
 
     it "sets the email_id" do
@@ -62,6 +71,19 @@ describe SendWithUsMailer do
     it "sets the recipient" do
       mail = MailerWithDefault.send_an_email
       mail.to[:address].must_equal 'def-dave@example.com'
+    end
+
+    it "inherits defaults from ancestor" do
+      InheritDefaultsMailer.defaults[:from_address].must_equal 'from@mailer_with_default.com'
+      InheritDefaultsMailer.defaults[:reply_to].must_equal 'reply_to@mailer_with_default.com'
+    end
+
+    it "replaces ancestor defaults by own" do
+      ReplacedDefaultsMailer.defaults[:from_address].must_equal 'from@replaced_defaults_mailer.com'
+    end
+
+    it "uses ancestors defaults that has not been replaced by own" do
+      ReplacedDefaultsMailer.defaults[:reply_to].must_equal 'reply_to@mailer_with_default.com'
     end
   end
 
