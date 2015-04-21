@@ -60,6 +60,11 @@ module SendWithUsMailer
         @defaults = defaults.merge(value)
       end
 
+      # Inherit defaults from ancestor
+      def inherited(heir)
+        heir.__send__(:default, defaults)
+      end
+
       # Return the mailer methods that are defined in any instance
       # of <tt>SendWithUsMailer::Base</tt>. There should not be
       # any reason to call this directly.
