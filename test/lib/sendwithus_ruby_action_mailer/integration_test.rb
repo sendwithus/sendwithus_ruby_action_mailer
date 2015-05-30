@@ -29,7 +29,8 @@ describe SendWithUsMailer do
              from_name: 'asender',
              reply_to: 'ano-reply@company.com',
              version_name: 'v2',
-             headers: { 'header-name' => 'header-value' }
+             headers: { 'header-name' => 'header-value' },
+             tags: ['some-tag']
       end
     end
 

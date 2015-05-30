@@ -63,7 +63,8 @@ class Notifier < SendWithUsMailer::Base
             version_name: 'version-A',
             locale: 'en-US',
             files: ["/path/to/file"],
-            headers: { 'header-name' => 'header-value' }
+            headers: { 'header-name' => 'header-value' },
+            tags: ['some-tag']
         )
     end
 end
