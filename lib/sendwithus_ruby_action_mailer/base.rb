@@ -1,3 +1,6 @@
+require "action_pack"
+require "abstract_controller"
+
 module SendWithUsMailer
   # Mailer models inherit from <tt>SendWithUsMailer::Base</tt>. A mailer model defines methods
   # used to generate an email message. In these methods, you can assign variables to be sent to
@@ -41,7 +44,8 @@ module SendWithUsMailer
   #   class Notifier < SendWithUsMailer::Base
   #     default from: 'system@example.com'
   #   end
-  class Base
+  class Base < AbstractController::Base
+    abstract!
 
     #---------------------- Singleton methods ----------------------------
     class << self
