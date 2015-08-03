@@ -99,7 +99,7 @@ SendWithUsMailer allows you to specify default values inside the class definitio
 
 `````Ruby
 class Notifier < SendWithUsMailer::Base
-    default from: 'system@example.com'
+    default from_address: 'system@example.com'
 end
 `````
 
