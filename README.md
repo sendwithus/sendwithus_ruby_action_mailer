@@ -64,7 +64,8 @@ class Notifier < SendWithUsMailer::Base
             locale: 'en-US',
             files: ["/path/to/file"],
             headers: { 'header-name' => 'header-value' },
-            tags: ['some-tag']
+            tags: ['some-tag'],
+            esp_account: 'esp_45678asjdlfj'
         )
     end
 end
