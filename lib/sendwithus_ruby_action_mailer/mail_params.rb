@@ -16,6 +16,7 @@ module SendWithUsMailer
       @headers = {}
       @tags = []
       @esp_account = ""
+      @perform_delivery = true
     end
 
     def assign(key, value) #:nodoc:
@@ -53,6 +54,8 @@ module SendWithUsMailer
           @tags.concat(value)
         when :esp_account
           @esp_account = value
+        when :perform_delivery
+          @perform_delivery = value
         end
       end
     end
@@ -77,7 +80,7 @@ module SendWithUsMailer
         files: @files,
         headers: @headers,
         tags: @tags
-      )
+      ) if @perform_delivery
     end
   end
 end

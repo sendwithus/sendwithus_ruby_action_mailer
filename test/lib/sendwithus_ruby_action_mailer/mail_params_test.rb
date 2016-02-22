@@ -61,5 +61,11 @@ describe SendWithUsMailer::MailParams do
       SendWithUs::Api.any_instance.expects(:send_email)
       subject.deliver
     end
+
+    it "doesnt call the send_with_us gem if perform_delivery = false" do
+      subject.merge!(perform_delivery: false)
+      SendWithUs::Api.any_instance.expects(:send_with).never
+      subject.deliver
+    end
   end
 end
