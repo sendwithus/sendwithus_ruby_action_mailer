@@ -58,12 +58,12 @@ describe SendWithUsMailer::MailParams do
     end
 
     it "calls the send_with_us gem" do
+      subject.merge!(email_id: 'x')
       SendWithUs::Api.any_instance.expects(:send_email)
       subject.deliver
     end
 
-    it "doesnt call the send_with_us gem if perform_delivery = false" do
-      subject.merge!(perform_delivery: false)
+    it "doesnt call the send_with_us gem if mail method is not called" do
       SendWithUs::Api.any_instance.expects(:send_with).never
       subject.deliver
     end
