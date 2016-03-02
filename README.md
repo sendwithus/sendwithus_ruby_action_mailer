@@ -94,6 +94,24 @@ You never instantiate your mailer class. Rather, you just call the method you de
 on the class itself.
 
 
+### Conditional Delivery
+
+If you have to check for a condition for senting the email (useful when it's a scheduled sending with Sidekiq for instance), you can simply not call the mail method and the email won't be sent out.
+
+`````Ruby
+class Notifier < SendWithUsMailer::Base
+    def we_miss_you(user_id)
+        user = User.find user_id
+        if user.do_we_miss_him?
+            mail(
+                email_id: 'ID-CODE-FROM-SEND-WITH-US',
+                recipient_address: user.email
+            )
+        end
+    end
+end
+`````
+
 ### Default Hash
 
 SendWithUsMailer allows you to specify default values inside the class definition:

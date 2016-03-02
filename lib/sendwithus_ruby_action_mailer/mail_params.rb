@@ -77,7 +77,7 @@ module SendWithUsMailer
         files: @files,
         headers: @headers,
         tags: @tags
-      )
+      ) if @email_id.present?
     end
   end
 end
