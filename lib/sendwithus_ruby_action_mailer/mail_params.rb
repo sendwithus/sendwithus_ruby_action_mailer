@@ -1,5 +1,4 @@
 require "send_with_us"
-require "jobs/mail_job"
 
 module SendWithUsMailer
   class MailParams
