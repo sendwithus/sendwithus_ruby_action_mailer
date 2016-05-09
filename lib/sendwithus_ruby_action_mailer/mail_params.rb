@@ -79,5 +79,30 @@ module SendWithUsMailer
         tags: @tags
       ) if @email_id.present?
     end
+
+    alias_method :deliver_now, :deliver
+
+    # Invoke <tt>SendWithUs::Api</tt> to deliver the message later via ActiveJob.
+    # The <tt>SendWithUs</tt> module is implemented in the +send_with_us+ gem.
+    #
+    # IMPORTANT NOTE: <tt>SendWithUs</tt> must be configured prior to calling this method.
+    # In particular, the +api_key+ must be set (following the guidelines in the
+    # +send_with_us+ documentation).
+    def deliver_later
+      Jobs::MailJob.perform_later(
+          @email_id,
+          @to,
+          data: @email_data,
+          from: @from,
+          cc: @cc,
+          bcc: @bcc,
+          esp_account: @esp_account,
+          version_name: @version_name,
+          locale: @locale,
+          files: @files,
+          headers: @headers,
+          tags: @tags
+      ) if @email_id.present?
+    end
   end
 end

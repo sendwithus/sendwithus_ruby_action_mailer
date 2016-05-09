@@ -1,6 +1,8 @@
 require_relative '../../test_helper'
 
 describe SendWithUsMailer::MailParams do
+  include ActiveJob::TestHelper
+
   subject { SendWithUsMailer::MailParams.new }
 
   describe "initialization" do
@@ -63,9 +65,45 @@ describe SendWithUsMailer::MailParams do
       subject.deliver
     end
 
-    it "doesnt call the send_with_us gem if mail method is not called" do
+    it "doesn't call the send_with_us gem if mail method is not called" do
       SendWithUs::Api.any_instance.expects(:send_with).never
       subject.deliver
+    end
+  end
+
+  describe "#deliver_now" do
+    it "method exists" do
+      subject.respond_to?(:deliver_now).must_equal true
+    end
+
+    it "calls the send_with_us gem" do
+      subject.merge!(email_id: 'x')
+      SendWithUs::Api.any_instance.expects(:send_email)
+      subject.deliver_now
+    end
+
+    it "doesn't call the send_with_us gem if mail method is not called" do
+      SendWithUs::Api.any_instance.expects(:send_with).never
+      subject.deliver_now
+    end
+  end
+
+  describe "#deliver_later" do
+    it "method exists" do
+      subject.respond_to?(:deliver_later).must_equal true
+    end
+
+    it "enqueues the job" do
+      subject.merge!(email_id: 'x')
+      assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob) do
+        subject.deliver_later
+      end
+    end
+
+    it "doesn't call the send_with_us gem if no email_id" do
+      assert_no_enqueued_jobs do
+        subject.deliver_later
+      end
     end
   end
 end
