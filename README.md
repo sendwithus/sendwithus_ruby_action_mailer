@@ -47,7 +47,7 @@ class Notifier < SendWithUsMailer::Base
 
     def welcome(recipient)
         assign(:account, recipient)
-
+        #=> in sendwithus email template {{ account }}
         assign(:captain_name, recipient.name)
         #=> in sendwithus email template {{ captain_name }}
         assign :team, {team_name: recipient.team_name, captain: recipient.name}
