@@ -96,7 +96,7 @@ on the class itself.
 
 ### Conditional Delivery
 
-If you have to check for a condition for senting the email (useful when it's a scheduled sending with Sidekiq for instance), you can simply not call the mail method and the email won't be sent out.
+If you have to check for a condition for sending the email (useful when it's a scheduled sending with Sidekiq for instance), you can simply not call the mail method and the email won't be sent out.
 
 `````Ruby
 class Notifier < SendWithUsMailer::Base
