@@ -93,6 +93,17 @@ mail.deliver                    # sends the email
 You never instantiate your mailer class. Rather, you just call the method you defined
 on the class itself.
 
+### Sending mail asynchronously with ActiveJob
+
+`````Ruby
+Notifier.welcome(nick).deliver_later # sends the email asynchronously
+
+mail = Notifier.welcome(david)  # => a SendWithUsMailer::MailParams object
+mail.deliver_later              # sends the email asynchronously
+`````
+
+You never instantiate your mailer class. Rather, you just call the method you defined
+on the class itself.
 
 ### Conditional Delivery
 
