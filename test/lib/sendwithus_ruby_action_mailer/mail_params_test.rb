@@ -93,9 +93,41 @@ describe SendWithUsMailer::MailParams do
       subject.respond_to?(:deliver_later).must_equal true
     end
 
-    it "enqueues the job" do
+    it "enqueues the job without any delay" do
       subject.merge!(email_id: 'x')
+      assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob, at: nil) do
+        subject.deliver_later
+      end
+    end
+
+    it "enqueues the job with a :wait time interval" do
+      subject.merge!(email_id: 'x')
+      # Unable to auto-assert against 'at: 1.hour.from_now' because I can't use timecop
       assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob) do
+        subject.deliver_later(wait: 1.hour)
+      end
+    end
+
+    it "enqueues the job to run using the :wait_until parameter" do
+      subject.merge!(email_id: 'x')
+      assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob,
+                           at: Date.tomorrow.noon.to_i) do
+        subject.deliver_later(wait_until: Date.tomorrow.noon)
+      end
+    end
+
+    it "enqueues the job to run using the :queue parameter" do
+      subject.merge!(email_id: 'x')
+      assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob,
+                           queue: "foo") do
+        subject.deliver_later(queue: "foo")
+      end
+    end
+
+    it "enqueues the job to run on the default mail queue" do
+      subject.merge!(email_id: 'x')
+      assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob,
+                           queue: "mailers") do
         subject.deliver_later
       end
     end
