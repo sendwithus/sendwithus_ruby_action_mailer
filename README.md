@@ -51,7 +51,7 @@ class Notifier < SendWithUsMailer::Base
         assign(:captain_name, recipient.name)
         #=> in sendwithus email template {{ captain_name }}
         assign :team, {team_name: recipient.team_name, captain: recipient.name}
-        #=> in sendwithus email template {{ team.team_name }} and {{ team.captain }} 
+        #=> in sendwithus email template {{ team.team_name }} and {{ team.captain }}
 
         mail(
             email_id: 'ID-CODE-FROM-SEND-WITH-US',
@@ -100,6 +100,12 @@ Notifier.welcome(nick).deliver_later # sends the email asynchronously
 
 mail = Notifier.welcome(david)  # => a SendWithUsMailer::MailParams object
 mail.deliver_later              # sends the email asynchronously
+
+mail = Notifier.welcome(david)  # => a SendWithUsMailer::MailParams object
+mail.deliver_later(             # send the email asynchronously in
+  wait: 5.minutes,              # 5 minutes via the mailers queue
+  queue: :priority
+)
 `````
 
 You never instantiate your mailer class. Rather, you just call the method you defined

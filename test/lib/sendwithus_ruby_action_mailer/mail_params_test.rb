@@ -100,6 +100,13 @@ describe SendWithUsMailer::MailParams do
       end
     end
 
+    it "enqueues the job with options" do
+      subject.merge!(email_id: 'x')
+      assert_enqueued_with(job: SendWithUsMailer::Jobs::MailJob, at: 3.minutes.from_now) do
+        subject.deliver_later(wait: 3.minutes)
+      end
+    end
+
     it "doesn't call the send_with_us gem if no email_id" do
       assert_no_enqueued_jobs do
         subject.deliver_later
