@@ -88,8 +88,8 @@ module SendWithUsMailer
     # IMPORTANT NOTE: <tt>SendWithUs</tt> must be configured prior to calling this method.
     # In particular, the +api_key+ must be set (following the guidelines in the
     # +send_with_us+ documentation).
-    def deliver_later
-      Jobs::MailJob.perform_later(
+    def deliver_later(options = {})
+      Jobs::MailJob.set(options).perform_later(
           @email_id,
           @to,
           data: @email_data,
